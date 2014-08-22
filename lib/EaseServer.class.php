@@ -1,37 +1,27 @@
 <?php
-class EaseServer{
-    private function _curl_request($url, $body, $header = array(), $method = CURLOPT_POST) {
-        array_push($header, 'Accept:application/json');
-        array_push($header, 'Content-Type:application/json');
-    
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, $method, 1);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'SSTS Browser/1.0');
-        curl_setopt($ch, CURLOPT_ENCODING, 'gzip');
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1);
-        if (isset($body{3}) > 0) {
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
-        }
-        if (count($header) > 0) {
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-        }
-    
-        $ret = curl_exec($ch);
-        $err = curl_error($ch);
-    
-        curl_close($ch);
-        clear_object($ch);
-        clear_object($body);
-        clear_object($header);
-    
-        if ($err) {
-            return $err;
-        }
-    
-        return json_decode($ret, true);
+include_once 'Curl.class.php';
+class EaseServer {
+    private static $org_name = 'xinyang-org';
+    private $app_name;
+    private $client_id;
+    private $client_secret;
+
+    public function __construct($app_name, $client_id, $client_secret){
+        $this->app_name = $app_name;
+        $this->client_id = $client_id;
+        $this->client_secret = $client_secret;
+    }
+
+    protected function getToken(){
+        $url = 'https://a1.easemob.com/' . self::$org_name . '/' . $this->app_name . '/token';
+        $data = array(
+            'grant_type'=>'client_credentials',
+            'client_id'=>$this->client_id,
+            'client_secret'=>$this->client_secret);
+        $data = json_encode($data);
+        $Curl = new Curl($url, $type);
+        $Curl->createData($data);
+        $Curl->execute();
+        $Curl->content;
     }
 }
