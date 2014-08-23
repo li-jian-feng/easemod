@@ -10,19 +10,19 @@ function get_token(){
     var_dump($data);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://a1.easemob.com/$org_name/$app_name/token");
-//     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-//     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    // curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $content = curl_exec($ch);
     if($content === false){
         echo 'error:' . curl_error($ch);
-//         echo '<br>errno:' . curl_errno($ch);
+        // echo '<br>errno:' . curl_errno($ch);
     }else{
-//         var_dump($content);
+        // var_dump($content);
     }
-//     var_dump($content);
+    // var_dump($content);
     curl_close($ch);
 }
 get_token();

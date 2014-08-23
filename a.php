@@ -36,7 +36,6 @@ class HXPlatform_WebRequest {
         return $result;
     }
 }
-
 // 下列四项系统参数.根据自己后台相应内容修改
 $org_name = 'org_name';
 $app_name = 'app_name';
