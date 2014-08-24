@@ -43,7 +43,6 @@ class Curl {
         curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $this->type);
         curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($this->ch, CURLOPT_HTTPHEADER, 'Authorization: Bearer YWMtNiZG6Cp4EeSUWruSy5r8YgAAAUglBnB3saWKcHRrK8FoYmbbychsLWZL4tc');
         curl_setopt($this->ch, CURLOPT_POSTFIELDS, $this->data);
         curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);
         $this->content = json_decode(curl_exec($this->ch));
