@@ -87,7 +87,7 @@ class User extends EaseServer {
             $url .= '&limit=' . $limit;
         }
         $auth = $this->getTokenOnFile();
-        $header = array('Authorization: Bearer ' . $auth);
+        $header = array('Authorization: Bearer ' . $auth,'Content-Type: application/json');
         $Curl = new Curl($url, 'DELETE');
         $Curl->createHeader($header);
         return $Curl->execute();
