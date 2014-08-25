@@ -42,17 +42,18 @@ class EaseServer implements IEasemob {
     public function regUserOnAuth($data){
         $url = $this->url . '/users';
         $auth = $this->getTokenOnFile();
-        $header = array('Authorization: Bearer '.$auth);
+        $header = array('Authorization: Bearer ' . $auth);
         $Curl = new Curl($url, 'POST');
         $Curl->createHeader($header);
         $Curl->createData($data);
         return $Curl->execute();
     }
+
     public function regUserOnMulti($data){
-        $url = $this->url.'/users';
+        $url = $this->url . '/users';
         $auth = $this->getTokenOnFile();
-        $header = array('Authorization: Bearer '.$auth);
-        $Curl = new Curl($url,'POST');
+        $header = array('Authorization: Bearer ' . $auth);
+        $Curl = new Curl($url, 'POST');
         $Curl->createHeader($header);
         $Curl->createData($data);
         return $Curl->execute();

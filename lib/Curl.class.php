@@ -3,7 +3,6 @@ class Curl {
     private $url;
     private $type;
     private $data;
-    
     private $ch;
 
     /**

@@ -8,8 +8,6 @@ $Ea = new EaseServer($app_name, $client_id, $client_secret);
 
 // $content = $Ea->regUserOnAuth(array('username'=>'china889','password'=>'administrator'));
 
-$data = array(
-    array('username'=>'china111','password'=>'admin')
-);
+$data = array(array('username'=>'china111','password'=>'admin'));
 $content = $Ea->regUserOnMulti($data);
 var_dump($content);

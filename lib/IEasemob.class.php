@@ -17,61 +17,46 @@ interface IEasemob {
      * @param array $data
      */
     public function regUserOnAuth($data);
-    
+
     /**
-     * 批量创建用户
-     * 二维数组
+     * 批量创建用户 二维数组
      * @param array $data
      */
     public function regUserOnMulti($data);
-    
+
     /**
      * 获取用户信息
      * @param unknown $a
      */
-    public function getUserInfo($a){
-        
-    }
-    
+    public function getUserInfo($a){}
+
     /**
      * 重置用户密码
      */
-    public function resetUserPassword(){
-        
-    }
-    
+    public function resetUserPassword(){}
+
     /**
      * 删除用户
      */
-    public function deleteUser(){
-        
-    }
-    
+    public function deleteUser(){}
+
     /**
      * 批量删除用户
      */
-    public function deleteUserOnMulti(){
-        
-    }
-    
+    public function deleteUserOnMulti(){}
+
     /**
      * 给一个用户添加一个好友
      */
-    public function addFriendToUser(){
-        
-    }
-    
+    public function addFriendToUser(){}
+
     /**
      * 删除一个用户的好友
      */
-    public function deleteFriendOnUser(){
-        
-    }
-    
+    public function deleteFriendOnUser(){}
+
     /**
      * 查看一个用户的所有好友
      */
-    public function getFriendsOnUser(){
-        
-    }
+    public function getFriendsOnUser(){}
 }
