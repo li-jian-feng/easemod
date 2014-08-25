@@ -108,11 +108,25 @@ class User extends EaseServer {
     /**
      * 删除一个用户的好友
      */
-    public function deleteFriendOnUser(){}
+    public function deleteFriendOnUser($username, $friendname){
+        $url = $this->url . '/users/' . $username . '/contacts/users/' . $friendname;
+        $auth = $this->getTokenOnFile();
+        $header = array('Authorization: Bearer ' . $auth);
+        $Curl = new Curl($url, 'DELETE');
+        $Curl->createHeader($header);
+        return $Curl->execute();
+    }
 
     /**
      * 查看一个用户的所有好友
      */
-    public function getFriendsOnUser(){}
+    public function getFriendsOnUser($username){
+        $url = $this->url . '/users/' . $username . '/contacts/users/';
+        $auth = $this->getTokenOnFile();
+        $header = array('Authorization: Bearer ' . $auth);
+        $Curl = new Curl($url, 'GET');
+        $Curl->createHeader($header);
+        return $Curl->execute();
+    }
 }
 ?>
