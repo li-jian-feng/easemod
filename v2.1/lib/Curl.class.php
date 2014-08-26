@@ -46,7 +46,7 @@ class Curl {
         curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);
         $this->content = json_decode(curl_exec($this->ch));
         curl_close($this->ch);
-        return (array)$this->content;
+        return obj2arr($this->content);
     }
 
     public function __toString(){}

@@ -79,13 +79,26 @@ class User extends EaseServer {
      * 批量删除用户 没有制定具体删除哪些用户 可以在返回值中查看到哪些用户被删除掉了 可以通过增加查询条件来做到精确的删除
      * @package int $limit
      */
-    public function deleteUserOnMulti($limit, $ql = ''){
-        $url = $this->url . '/users?';
-        if($ql){
-            $url .= $ql;
-        }else{
-            $url .= '&limit=' . $limit;
-        }
+    public function deleteUserBySort($sort, $limit=100){
+        $ql = 'order+by+created+' . $sort;
+        $url = $this->url . '/users?ql=' . $ql . '&limit=' . $limit;
+        $auth = $this->getTokenOnFile();
+        $header = array('Authorization: Bearer ' . $auth,'Content-Type: application/json');
+        $Curl = new Curl($url, 'DELETE');
+        $Curl->createHeader($header);
+        return $Curl->execute();
+    }
+
+    /**
+     *
+     * @param int(13) $start
+     * @param int(13) $end
+     * @param int $limit 50
+     * @return array
+     */
+    public function deleteUserByTime($start, $end, $limit = 100){
+        $ql = 'created>' . $start . ' and created<' . $end;
+        $url = $this->url . '/users?ql=' . url_enc($ql) . '&limit=' . $limit;
         $auth = $this->getTokenOnFile();
         $header = array('Authorization: Bearer ' . $auth,'Content-Type: application/json');
         $Curl = new Curl($url, 'DELETE');
