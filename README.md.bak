@@ -21,6 +21,4 @@ id参数应该是string类型
 2、header已加上 Authorization : Bearer还出现'unauthorized'的错误
 >>>解决办法：
 去掉Authorization与冒号(:)之间的空格
-
-3、
 =====================

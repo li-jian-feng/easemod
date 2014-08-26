@@ -7,15 +7,13 @@ class Chat extends EaseServer {
      * @return array
      */
     public function chatFiles($file){
-        $auth = $this->getTokenOnFile();
         $data = "@" . $file;
-        $header[] = 'Authorization: Bearer ' . $auth;
+        $header[] = 'Authorization: Bearer ' . $this->token;
         $header[] = 'restrict-access: true';
         $header[] = 'Content-Type: application/json';
-        $Curl = new Curl($this->url . '/chatfiles', 'POST');
-        $Curl->createHeader($header);
-        $Curl->createData($data);
-        return $Curl->execute();
+        $this->ch->createHeader($header);
+        $this->ch->createData($data);
+        return $this->ch->execute($this->url . '/chatfiles', 'POST');
     }
 
     /**
@@ -33,12 +31,10 @@ class Chat extends EaseServer {
      * @return array
      */
     public function getMessagesByNew($limit = 20){
-        $auth = $this->getTokenOnFile();
-        $header[] = 'Authorization: Bearer ' . $auth;
-        $url = $this->url . '/chatmessages?ql' . urlencode('=order+by+timestamp+desc&limit=' . $limit);
-        $Curl = new Curl($url, 'GET');
-        $Curl->createHeader($header);
-        return $Curl->execute();
+        $header[] = 'Authorization: Bearer ' . $this->token;
+        $url = $this->url . '/chatmessages?ql=' . urlencode('order+by+timestamp+desc') . '&limit=' . $limit;
+        $this->ch->createHeader($header);
+        return $this->ch->execute($url, 'GET');
     }
 
     /**
@@ -47,11 +43,10 @@ class Chat extends EaseServer {
     public function getMessagesByTimes($start, $end){
         $ql = 'select * where timestamp>' . $start . ' and timestamp<' . $end . ' order by timestamp desc';
         $url = $this->url . '/chatmessages?ql=' . url_enc($ql);
-        $header[] = 'Authorization: Bearer ' . $this->getTokenOnFile();
+        $header[] = 'Authorization: Bearer ' . $this->token;
         $header[] = 'Content-Type: application/json';
-        $Curl = new Curl($url, 'GET');
-        $Curl->createHeader($header);
-        return $Curl->execute();
+        $this->ch->createHeader($header);
+        return $this->ch->execute($url, 'GET');
     }
 
     /**
@@ -60,9 +55,8 @@ class Chat extends EaseServer {
     public function getMessagesByPage($limit){
         $ql = 'select+*+order+by+timestamp+desc';
         $url = $this->url . '/chatmessages?ql=' . url_enc($ql) . '&limit=' . $limit;
-        $header[] = 'Authorization: Bearer ' . $this->getTokenOnFile();
-        $Curl = new Curl($url, 'GET');
-        $Curl->createHeader($header);
-        return $Curl->execute();
+        $header[] = 'Authorization: Bearer ' . $this->token;
+        $this->ch->createHeader($header);
+        return $this->ch->execute($url, 'GET');
     }
 }
