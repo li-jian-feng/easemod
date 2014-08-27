@@ -1,22 +1,21 @@
 <?php
 require_once 'common.func.php';
 
-function __autoload($class){
-    require_once './lib/' . $class . '.class.php';
-}
 $app_name = 'xinyang';
 $client_id = 'YXA6bLWQMCnCEeSl4oHH89FGRg';
 $client_secret = 'YXA6xZH8c5_a80Ik66kM7wOu0FeTr2g';
 
 $User = new User($app_name, $client_id, $client_secret);
 $data = array(
-// array('username'=>'china111','password'=>'administrator'),
-// array('username'=>'china222','password'=>'administrator'),
-// array('username'=>'china333','password'=>'administrator'),
-// array('username'=>'china555','password'=>'administrator'),
-array('username'=>'china666','password'=>'administrator')
+        // array('username'=>'china111','password'=>'administrator'),
+        // array('username'=>'china222','password'=>'administrator'),
+        // array('username'=>'china333','password'=>'administrator'),
+        // array('username'=>'china555','password'=>'administrator'),
+        array('username'=>'china888','password'=>'administrator')
 // array('username'=>'china888','password'=>'administrator')
-);
+)
+;
+// $data = json_encode(array('username'=>'china999','password'=>'china999'));
 $info = $User->regUserOnAuth($data);
 // $info = $User->getUserInfo('china666');
 // $info = $User->deleteUserByTime(1409020348390, 1409020348407);

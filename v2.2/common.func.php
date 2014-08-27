@@ -20,3 +20,11 @@ function url_enc($ql){
     $str = urlencode($ql);
     return str_replace('%2A', '*', $str);
 }
+
+/**
+ * 自动载入
+ * @param unknown $class
+ */
+function __autoload($class){
+    require_once './lib/' . $class . '.class.php';
+}
