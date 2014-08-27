@@ -1,7 +1,6 @@
 
 =======
 @author Black丶丶Mamba  
-@email 1024514854@qq.com
 =======
 
 easemod环信
